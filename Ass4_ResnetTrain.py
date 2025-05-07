@@ -79,7 +79,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
 print("Loss function and optimizer, before training loop")
 
 # Training loop
-epochs = 1
+epochs = 10
 for epoch in range(epochs):
     model.train()
     running_loss = 0
