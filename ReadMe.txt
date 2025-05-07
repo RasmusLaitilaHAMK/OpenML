@@ -1,4 +1,4 @@
-Muuta export.py tämänlaiseksi ja suorita se sen jälkeen
+# Chnage export.py to be like this and Run after that.
 
 #!/usr/bin/env python
 # Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -30,4 +30,4 @@ if __name__ == "__main__":
     main()
 
 
-Ja siirrä train ja test kansiot CarLogoDataset kansioon.
+# Move Train and Test folders to CarLogoDataset folder.
