@@ -19,7 +19,8 @@ class_names = checkpoint['class_names']
 
 # Image transform (same as training)
 transform = transforms.Compose([
-    transforms.Resize((224, 224)),
+    transforms.Resize(256),
+    transforms.CenterCrop(224),  # or RandomResizedCrop(224)
     transforms.ToTensor(),
     transforms.Normalize(
         mean=[0.485, 0.456, 0.406],
@@ -28,7 +29,7 @@ transform = transforms.Compose([
 ])
 
 # Load image
-img_path = 'CarLogoDataset/test/mazda/27368.jpg'
+img_path = 'CarLogoDataset/Test/mazda/27368.jpg'
 image = Image.open(img_path).convert('RGB')
 input_tensor = transform(image).unsqueeze(0).to(device)
 

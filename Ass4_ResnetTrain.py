@@ -30,7 +30,6 @@ train_loader = DataLoader(train_data, batch_size=16, shuffle=True, num_workers=2
 test_loader = DataLoader(test_data, batch_size=16, num_workers=2)
 
 class_names = train_data.classes
-print("Class names:", class_names)
 
 # Get class count and names
 num_classes = len(train_data.classes)
@@ -73,11 +72,6 @@ for epoch in range(epochs):
     avg_loss = running_loss / len(train_loader)
     print(f"Epoch {epoch+1}/{epochs} - Loss: {avg_loss:.4f}")
 print("After training loop")
-# Save model and class names
-torch.save({
-    'model_state_dict': model.state_dict(),
-    'class_names': class_names
-}, 'car_logo_model.pth')
 
 # Evaluate
 model.eval()
@@ -93,3 +87,10 @@ with torch.no_grad():
         correct += (predicted == labels).sum().item()
 
 accuracy = 100 * correct / total
+print(f"Test Accuracy: {accuracy:.2f}%")
+
+# Save model and class names
+torch.save({
+    'model_state_dict': model.state_dict(),
+    'class_names': class_names
+}, 'car_logo_model.pth')
