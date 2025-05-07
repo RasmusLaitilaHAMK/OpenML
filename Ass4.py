@@ -28,7 +28,7 @@ transform = transforms.Compose([
 ])
 
 # Load image
-img_path = 'CarLogoDataset/test/mazda/27368.jpg'
+img_path = 'CarLogoDataset/Test/mazda/27368.jpg'
 image = Image.open(img_path).convert('RGB')
 input_tensor = transform(image).unsqueeze(0).to(device)
 
