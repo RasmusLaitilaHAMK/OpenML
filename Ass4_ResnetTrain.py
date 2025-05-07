@@ -11,7 +11,7 @@ import os
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 
-def set_seed(seed=42):
+def set_seed(seed):
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
@@ -19,25 +19,38 @@ def set_seed(seed=42):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
 
-set_seed(42)  # Pick any number
+set_seed(5)  # Pick any number
 
 # Paths
 train_dir = 'CarLogoDataset/Train'
 test_dir = 'CarLogoDataset/Test'
 
 # Define transforms (resize and normalize)
-transform = transforms.Compose([
-    transforms.Resize((224, 224)),
+train_transform = transforms.Compose([
+    transforms.Resize(256),
+    transforms.RandomResizedCrop(224),
+    transforms.RandomHorizontalFlip(),
     transforms.ToTensor(),
     transforms.Normalize(
-        mean=[0.485, 0.456, 0.406],  # Standard for ImageNet models
+        mean=[0.485, 0.456, 0.406],
         std=[0.229, 0.224, 0.225]
     )
 ])
 
+test_transform = transforms.Compose([
+    transforms.Resize(256),
+    transforms.CenterCrop(224),
+    transforms.ToTensor(),
+    transforms.Normalize(
+        mean=[0.485, 0.456, 0.406],
+        std=[0.229, 0.224, 0.225]
+    )
+])
+
+
 # Load datasets
-train_data = datasets.ImageFolder(train_dir, transform=transform)
-test_data = datasets.ImageFolder(test_dir, transform=transform)
+train_data = datasets.ImageFolder(train_dir, transform=train_transform)
+test_data = datasets.ImageFolder(test_dir, transform=test_transform)
 
 train_loader = DataLoader(train_data, batch_size=16, shuffle=True, num_workers=2)
 test_loader = DataLoader(test_data, batch_size=16, num_workers=2)
