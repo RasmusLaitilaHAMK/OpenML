@@ -1,4 +1,4 @@
-# Chnage export.py to be like this and Run after that.
+# Change export.py to be like this and Run after that.
 
 #!/usr/bin/env python
 # Copyright (c) Meta Platforms, Inc. and affiliates.
