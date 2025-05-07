@@ -1,4 +1,4 @@
-Muuta export.py tämänlaiseksi
+Muuta export.py tämänlaiseksi ja suorita se sen jälkeen
 
 #!/usr/bin/env python
 # Copyright (c) Meta Platforms, Inc. and affiliates.
